@@ -1,0 +1,79 @@
+#: lib/linguo_web/controllers/fake_controller.ex:40
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.forbidden"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:49
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.forbidden-description"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:48
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.forbidden-title"
+msgstr ""
+
+#: lib/linguo_web/controllers/fake_controller.ex:34
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.unauthorized"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:64
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.unauthorized-description"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:63
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.unauthorized-title"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:12
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.description"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:17
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.message-param"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:34
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.response-description"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:33
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.response-title"
+msgstr ""
+
+#: lib/linguo_web/controllers/fake_controller.ex:21
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.show-description"
+msgstr ""
+
+#: lib/linguo_web/controllers/fake_controller.ex:28
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.show-response-ok"
+msgstr ""
+
+#: lib/linguo_web/controllers/fake_controller.ex:22
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.show-summary"
+msgstr ""
+
+#: lib/linguo_web/schemas.ex:11
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.title"
+msgstr ""
+
+#: lib/linguo_web/open_api_spec.ex:17
+#, elixir-autogen, elixir-format
+msgid "linguo.api.info.description"
+msgstr ""
+
+#: lib/linguo_web/open_api_spec.ex:15
+#, elixir-autogen, elixir-format
+msgid "linguo.api.info.title"
+msgstr ""

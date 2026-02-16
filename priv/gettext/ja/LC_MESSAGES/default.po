@@ -1,0 +1,79 @@
+#: lib/linguo_web/controllers/fake_controller.ex:40
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.forbidden"
+msgstr "禁止されています"
+
+#: lib/linguo_web/schemas.ex:49
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.forbidden-description"
+msgstr "禁止されていますの説明"
+
+#: lib/linguo_web/schemas.ex:48
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.forbidden-title"
+msgstr "禁止"
+
+#: lib/linguo_web/controllers/fake_controller.ex:34
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.unauthorized"
+msgstr "未認証"
+
+#: lib/linguo_web/schemas.ex:64
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.unauthorized-description"
+msgstr "未認証の説明"
+
+#: lib/linguo_web/schemas.ex:63
+#, elixir-autogen, elixir-format
+msgid "api-spec.common.unauthorized-title"
+msgstr "未認証"
+
+#: lib/linguo_web/schemas.ex:12
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.description"
+msgstr "フェイクAPIの説明"
+
+#: lib/linguo_web/schemas.ex:17
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.message-param"
+msgstr "`message` パラメータ"
+
+#: lib/linguo_web/schemas.ex:34
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.response-description"
+msgstr "フェイクAPIのレスポンス"
+
+#: lib/linguo_web/schemas.ex:33
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.response-title"
+msgstr "フェイクAPIレスポンスのタイトル"
+
+#: lib/linguo_web/controllers/fake_controller.ex:21
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.show-description"
+msgstr "フェイクAPIの説明"
+
+#: lib/linguo_web/controllers/fake_controller.ex:28
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.show-response-ok"
+msgstr "フェイクAPIの成功レスポンス"
+
+#: lib/linguo_web/controllers/fake_controller.ex:22
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.show-summary"
+msgstr "フェイクAPIのGET"
+
+#: lib/linguo_web/schemas.ex:11
+#, elixir-autogen, elixir-format
+msgid "api-spec.fake.title"
+msgstr "フェイクAPI GETのタイトル"
+
+#: lib/linguo_web/open_api_spec.ex:17
+#, elixir-autogen, elixir-format
+msgid "linguo.api.info.description"
+msgstr "APIの説明"
+
+#: lib/linguo_web/open_api_spec.ex:15
+#, elixir-autogen, elixir-format
+msgid "linguo.api.info.title"
+msgstr "APIのタイトル"
