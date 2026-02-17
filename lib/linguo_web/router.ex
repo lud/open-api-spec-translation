@@ -3,12 +3,11 @@ defmodule LinguoWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug OpenApiSpex.Plug.PutApiSpec, module: LinguoWeb.ApiSpec
+    plug Oaskit.Plugs.SpecProvider, spec: LinguoWeb.ApiSpec
   end
 
   pipeline :openapi do
     plug LinguoWeb.Plug.SetLocale
-    plug OpenApiSpex.Plug.PutApiSpec, module: LinguoWeb.ApiSpec
   end
 
   scope "/", LinguoWeb do
@@ -20,7 +19,7 @@ defmodule LinguoWeb.Router do
   scope "/" do
     pipe_through :openapi
 
-    get "/openapi", OpenApiSpex.Plug.RenderSpec, []
-    get "/:locale/openapi", OpenApiSpex.Plug.RenderSpec, []
+    get "/openapi", Oaskit.SpecController, spec: LinguoWeb.ApiSpec
+    get "/:locale/openapi", Oaskit.SpecController, spec: LinguoWeb.ApiSpec
   end
 end

@@ -4,8 +4,6 @@ config :gettext, locales: ~w(en ja), default_locale: "en"
 
 config :phoenix, :json_library, Jason
 
-config :open_api_spex, :cache_adapter, OpenApiSpex.Plug.NoneCache
-
 config :linguo, LinguoWeb.Endpoint,
   url: [host: "localhost", scheme: "http", port: 4000],
   http: [ip: {127, 0, 0, 1}, port: 4000],

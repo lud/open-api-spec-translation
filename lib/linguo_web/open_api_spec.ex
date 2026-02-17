@@ -1,51 +1,50 @@
 defmodule LinguoWeb.ApiSpec do
-  @behaviour OpenApiSpex.OpenApi
+  use Oaskit
   use LinguoWeb, :verified_routes
   use Gettext, backend: LinguoWeb.Gettext
 
-  alias OpenApiSpex.Info
-  alias OpenApiSpex.OpenApi
-  alias OpenApiSpex.Paths
-  alias OpenApiSpex.Components
-  alias OpenApiSpex.SecurityScheme
-  alias OpenApiSpex.Server
+  alias Oaskit.Spec.Paths
+  alias Oaskit.Spec.Server
 
-  def info do
-    %Info{
-      title: gettext("linguo.api.info.title"),
-      version: "1.0.0",
-      description: gettext("linguo.api.info.description")
-    }
+  @impl true
+  def cache_variant do
+    # Note
+    #
+    # This is not needed if you only want translations when serving the spec as
+    # JSON.
+    #
+    # But if your schemas have properties or titles that change according to the
+    # locale, then you want to build and cache a spec for each locale. So you
+    # can define a cache variant for each version of the spec:
+
+    Gettext.get_locale(LinguoWeb.Gettext)
   end
 
-  def components do
-    %Components{
-      securitySchemes: %{
-        "OAuth2ClientCredentials" => %SecurityScheme{
-          type: "oauth2",
-          description: "OAuth2",
-          flows: %{
-            "clientCredentials" => %{
-              tokenUrl: "/oauth/token",
-              scopes: %{
-
+  @impl true
+  def spec do
+    %{
+      openapi: "3.1.0",
+      info: %{
+        title: gettext("linguo.api.info.title"),
+        version: "1.0.0",
+        description: gettext("linguo.api.info.description")
+      },
+      servers: [Server.from_config(:linguo, LinguoWeb.Endpoint)],
+      paths: Paths.from_router(LinguoWeb.Router),
+      components: %{
+        securitySchemes: %{
+          "OAuth2ClientCredentials" => %{
+            type: "oauth2",
+            description: "OAuth2",
+            flows: %{
+              clientCredentials: %{
+                tokenUrl: "/oauth/token",
+                scopes: %{}
               }
             }
           }
         }
       }
     }
-  end
-
-  @impl OpenApi
-  def spec do
-    %OpenApi{
-      servers: [%Server{url: "#{app_scheme()}://#{app_host()}"}],
-      info: info(),
-      paths: Paths.from_router(LinguoWeb.Router),
-      components: components()
-    }
-    # Discover request/response schemas from path specs
-    |> OpenApiSpex.resolve_schema_modules()
   end
 end

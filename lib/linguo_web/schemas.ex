@@ -1,73 +1,74 @@
 defmodule LinguoWeb.Schemas do
-  alias OpenApiSpex.Schema
-
   defmodule Fake do
-    @behaviour OpenApiSpex.Schema
     use Gettext, backend: LinguoWeb.Gettext
 
+    def json_schema do
+      Gettext.get_locale(LinguoWeb.Gettext)
 
-    def schema do
-      %OpenApiSpex.Schema{
+      %{
         title: gettext("api-spec.fake.title"),
         description: gettext("api-spec.fake.description"),
         type: :object,
         properties: %{
-          message: %Schema{
+          message: %{
             type: :string,
             description: gettext("api-spec.fake.message-param")
-          },
+          }
         },
-        example: %{
-          "message" => "ok"
-        }
+        examples: [
+          %{
+            "message" => "ok"
+          }
+        ]
       }
     end
   end
 
   defmodule FakeResponse do
-        @behaviour OpenApiSpex.Schema
     use Gettext, backend: LinguoWeb.Gettext
 
-    def schema do
-      %OpenApiSpex.Schema{
+    def json_schema do
+      fake_schema = Fake.json_schema()
+
+      %{
         title: gettext("api-spec.fake.response-title"),
         description: gettext("api-spec.fake.response-description"),
         type: :object,
-        properties: Fake.schema().properties,
-        example: Fake.schema().example
+        properties: fake_schema.properties,
+        examples: fake_schema.examples
       }
     end
   end
 
   defmodule ForbiddenResponse do
-    @behaviour OpenApiSpex.Schema
     use Gettext, backend: LinguoWeb.Gettext
 
-    def schema do
-      %OpenApiSpex.Schema{
+    def json_schema do
+      %{
         title: gettext("api-spec.common.forbidden-title"),
         description: gettext("api-spec.common.forbidden-description"),
         type: :object,
-        properties: %{title: %Schema{type: :string}, detail: %Schema{type: :string}},
-        example: %{"title" => "Forbidden", "detail" => "Access denied."}
+        properties: %{title: %{type: :string}, detail: %{type: :string}},
+        examples: [%{"title" => "Forbidden", "detail" => "Access denied."}]
       }
     end
   end
 
   defmodule UnauthorizedResponse do
-    @behaviour OpenApiSpex.Schema
     use Gettext, backend: LinguoWeb.Gettext
 
-    def schema do
-      %OpenApiSpex.Schema{
+    def json_schema do
+      %{
         title: gettext("api-spec.common.unauthorized-title"),
         description: gettext("api-spec.common.unauthorized-description"),
         type: :object,
-        properties: %{title: %Schema{type: :string}, detail: %Schema{type: :string}},
-        example: %{
-          "title" => "Unauthorized",
-          "detail" => "Missing or invalid authorization header."
-        }
+        properties: %{title: %{type: :string}, detail: %{type: :string}},
+        examples: [
+          %{
+            "title" => "Unauthorized",
+            "detail" => "Missing or invalid authorization header."
+          }
+        ]
       }
     end
   end

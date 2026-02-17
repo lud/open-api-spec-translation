@@ -1,57 +1,62 @@
 defmodule LinguoWeb.FakeController do
   use LinguoWeb, :controller
-  use OpenApiSpex.ControllerSpecs
+  use Oaskit.Controller
 
-  alias OpenApiSpex.Operation
+  plug Oaskit.Plugs.ValidateRequest, security: LinguoWeb.Plug.FakeSecurity
+
   alias LinguoWeb.Schemas.FakeResponse
   alias LinguoWeb.Schemas.ForbiddenResponse
   alias LinguoWeb.Schemas.UnauthorizedResponse
 
-  plug OpenApiSpex.Plug.CastAndValidate, render_error: LinguoWeb.Plug.JsonRenderError
+  @operation_id "FakeShow"
 
-  def open_api_operation(action) do
-    operation = String.to_existing_atom("#{action}_operation")
-    apply(__MODULE__, operation, [])
+  def __oaskit__(:operation_id, :show, _) do
+    {:ok, @operation_id}
   end
 
-  def show_operation do
-    %Operation{
-      tags: ["fake"],
-      security: [%{}, %{"OAuth2ClientCredentials" => []}],
-      description: gettext("api-spec.fake.show-description"),
-      summary: gettext("api-spec.fake.show-summary"),
-      operationId: "FakeController.show",
-      parameters: [],
-      responses: %{
-        200 =>
-          Operation.response(
-            gettext("api-spec.fake.show-response-ok"),
-            "application/json",
-            FakeResponse
-          ),
-        401 =>
-          Operation.response(
-            gettext("api-spec.common.unauthorized"),
-            "application/json",
-            UnauthorizedResponse
-          ),
-        403 =>
-          Operation.response(
-            gettext("api-spec.common.forbidden"),
-            "application/json",
-            ForbiddenResponse
-          )
-      },
-      extensions: %{
-        "x-codeSamples" => [
-          %{
-            lang: "cURL",
-            label: "cURL",
-            source: "curl -X GET \"#{app_scheme()}://#{app_host()}/fake\""
-          }
-        ]
-      }
-    }
+  def __oaskit__(:operation, :show, _) do
+    {:ok,
+     %Oaskit.Spec.Operation{
+       description: gettext("api-spec.fake.show-description"),
+       summary: gettext("api-spec.fake.show-summary"),
+       operationId: @operation_id,
+       parameters: [
+         %Oaskit.Spec.Parameter{
+           name: "some-param",
+           in: :query,
+           required: true,
+           schema: %{const: "valid"}
+         }
+       ],
+       responses: %{
+         200 => %Oaskit.Spec.Response{
+           content: %{
+             "application/json" => %Oaskit.Spec.MediaType{
+               schema: FakeResponse
+             }
+           },
+           description: gettext("api-spec.fake.show-response-ok")
+         },
+         401 => %Oaskit.Spec.Response{
+           content: %{
+             "application/json" => %Oaskit.Spec.MediaType{
+               schema: UnauthorizedResponse
+             }
+           },
+           description: gettext("api-spec.common.unauthorized")
+         },
+         403 => %Oaskit.Spec.Response{
+           content: %{
+             "application/json" => %Oaskit.Spec.MediaType{
+               schema: ForbiddenResponse
+             }
+           },
+           description: gettext("api-spec.common.forbidden")
+         }
+       },
+       security: [%{"OAuth2ClientCredentials" => []}],
+       tags: ["fake"]
+     }}
   end
 
   def show(conn, _params) do

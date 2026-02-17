@@ -23,7 +23,7 @@ defmodule Linguo.MixProject do
   defp deps do
     [
       {:gettext, "~> 1.0", override: true},
-      {:open_api_spex, "~> 3.21"},
+      {:oaskit, "~> 0.11"},
       {:phoenix, "~> 1.8.0"},
       {:phoenix_live_view, "~> 1.0"},
       {:bandit, "~> 1.5"},
